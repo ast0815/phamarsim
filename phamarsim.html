@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>phamarsim Package &mdash; Phamarsim 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Phamarsim 0.1.0 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to Phamarsim’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Phamarsim’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Phamarsim 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="phamarsim-package">
+<h1>phamarsim Package<a class="headerlink" href="#phamarsim-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><a class="reference internal" href="#module-phamarsim" title="phamarsim"><tt class="xref py py-mod docutils literal"><span class="pre">phamarsim</span></tt></a> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-phamarsim"></span><p>Phamarsim - a phased microhpone array simulation library</p>
+</div>
+<div class="section" id="module-phamarsim.environments">
+<span id="environments-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">environments</span></tt> Module<a class="headerlink" href="#module-phamarsim.environments" title="Permalink to this headline">¶</a></h2>
+<p>Phamarsim - a phased microhpone array simulation library</p>
+</div>
+<div class="section" id="module-phamarsim.microphones">
+<span id="microphones-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">microphones</span></tt> Module<a class="headerlink" href="#module-phamarsim.microphones" title="Permalink to this headline">¶</a></h2>
+<p>Phamarsim - a phased microhpone array simulation library</p>
+</div>
+<div class="section" id="module-phamarsim.simple_mediums">
+<span id="simple-mediums-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">simple_mediums</span></tt> Module<a class="headerlink" href="#module-phamarsim.simple_mediums" title="Permalink to this headline">¶</a></h2>
+<p>Simple mediums for use in simple environments</p>
+<dl class="class">
+<dt id="phamarsim.simple_mediums.Air">
+<em class="property">class </em><tt class="descclassname">phamarsim.simple_mediums.</tt><tt class="descname">Air</tt><big>(</big><em>temp=25.0</em><big>)</big><a class="reference internal" href="_modules/phamarsim/simple_mediums.html#Air"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.simple_mediums.Air" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#phamarsim.simple_mediums.SimpleMedium" title="phamarsim.simple_mediums.SimpleMedium"><tt class="xref py py-class docutils literal"><span class="pre">phamarsim.simple_mediums.SimpleMedium</span></tt></a></p>
+<p>Simple medium: dry air</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="phamarsim.simple_mediums.SimpleMedium">
+<em class="property">class </em><tt class="descclassname">phamarsim.simple_mediums.</tt><tt class="descname">SimpleMedium</tt><big>(</big><em>c</em><big>)</big><a class="reference internal" href="_modules/phamarsim/simple_mediums.html#SimpleMedium"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.simple_mediums.SimpleMedium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for simple mediums</p>
+<dl class="method">
+<dt id="phamarsim.simple_mediums.SimpleMedium.get_speed_of_sound">
+<tt class="descname">get_speed_of_sound</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/phamarsim/simple_mediums.html#SimpleMedium.get_speed_of_sound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.simple_mediums.SimpleMedium.get_speed_of_sound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the speed of sound in the medium.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.simple_mediums.SimpleMedium.set_speed_of_sound">
+<tt class="descname">set_speed_of_sound</tt><big>(</big><em>c</em><big>)</big><a class="reference internal" href="_modules/phamarsim/simple_mediums.html#SimpleMedium.set_speed_of_sound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.simple_mediums.SimpleMedium.set_speed_of_sound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-phamarsim.sources">
+<span id="sources-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">sources</span></tt> Module<a class="headerlink" href="#module-phamarsim.sources" title="Permalink to this headline">¶</a></h2>
+<p>Sound sources for Phamarsim</p>
+<p>Sound sources must define the method</p>
+<blockquote>
+<div>get_sound_signal(t)</div></blockquote>
+<p>which returns the signal of the source for every point in time t [s].
+The unit of the signal is arbitrary and will be translated into a pressure by a speaker.
+It should be centered at 0 and the amplitude should be around 1.</p>
+<dl class="class">
+<dt id="phamarsim.sources.SineSource">
+<em class="property">class </em><tt class="descclassname">phamarsim.sources.</tt><tt class="descname">SineSource</tt><big>(</big><em>freq=440.0</em>, <em>amp=1.0</em>, <em>phi=0.0</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#phamarsim.sources.SoundSource" title="phamarsim.sources.SoundSource"><tt class="xref py py-class docutils literal"><span class="pre">phamarsim.sources.SoundSource</span></tt></a></p>
+<p>Simple sine wave sound generator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>freq</strong> : float, optional</p>
+<blockquote>
+<div><p>The frequency in Hz</p>
+</div></blockquote>
+<p><strong>amp</strong> : float, optional</p>
+<blockquote>
+<div><p>The amplitude of the signal</p>
+</div></blockquote>
+<p><strong>phi</strong> : float, optional</p>
+<blockquote class="last">
+<div><p>The phase of the signal</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.get_amplitude">
+<tt class="descname">get_amplitude</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.get_amplitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.get_amplitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.get_frequency">
+<tt class="descname">get_frequency</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.get_frequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.get_frequency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.get_phase">
+<tt class="descname">get_phase</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.get_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.get_phase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.get_sound_signal">
+<tt class="descname">get_sound_signal</tt><big>(</big><em>t</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.get_sound_signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.get_sound_signal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.set_amplitude">
+<tt class="descname">set_amplitude</tt><big>(</big><em>amp</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.set_amplitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.set_amplitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.set_frequency">
+<tt class="descname">set_frequency</tt><big>(</big><em>freq</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.set_frequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.set_frequency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SineSource.set_phase">
+<tt class="descname">set_phase</tt><big>(</big><em>phi</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.set_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.set_phase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="phamarsim.sources.SoundSource">
+<em class="property">class </em><tt class="descclassname">phamarsim.sources.</tt><tt class="descname">SoundSource</tt><a class="reference internal" href="_modules/phamarsim/sources.html#SoundSource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SoundSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for sound sources</p>
+<dl class="method">
+<dt id="phamarsim.sources.SoundSource.get_signal">
+<tt class="descname">get_signal</tt><big>(</big><em>t</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SoundSource.get_signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SoundSource.get_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the signal of the source for each moment t.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-phamarsim.speakers">
+<span id="speakers-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">speakers</span></tt> Module<a class="headerlink" href="#module-phamarsim.speakers" title="Permalink to this headline">¶</a></h2>
+<p>Speakers for Phamarsim</p>
+<p>Speakers translate the signal of a SoundSource to pressure variations.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">phamarsim Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">phamarsim</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-phamarsim.environments"><tt class="docutils literal"><span class="pre">environments</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-phamarsim.microphones"><tt class="docutils literal"><span class="pre">microphones</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-phamarsim.simple_mediums"><tt class="docutils literal"><span class="pre">simple_mediums</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-phamarsim.sources"><tt class="docutils literal"><span class="pre">sources</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-phamarsim.speakers"><tt class="docutils literal"><span class="pre">speakers</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Phamarsim&#8217;s documentation!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/phamarsim.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Phamarsim’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Phamarsim 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lukas Koch.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

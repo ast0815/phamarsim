@@ -1,0 +1,51 @@
+phamarsim Package
+=================
+
+:mod:`phamarsim` Package
+------------------------
+
+.. automodule:: phamarsim
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`environments` Module
+--------------------------
+
+.. automodule:: phamarsim.environments
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`microphones` Module
+-------------------------
+
+.. automodule:: phamarsim.microphones
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`simple_mediums` Module
+----------------------------
+
+.. automodule:: phamarsim.simple_mediums
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`sources` Module
+---------------------
+
+.. automodule:: phamarsim.sources
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`speakers` Module
+----------------------
+
+.. automodule:: phamarsim.speakers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
