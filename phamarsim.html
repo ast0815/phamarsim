@@ -53,12 +53,214 @@
   <div class="section" id="phamarsim-package">
 <h1>phamarsim Package<a class="headerlink" href="#phamarsim-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2><a class="reference internal" href="#module-phamarsim" title="phamarsim"><tt class="xref py py-mod docutils literal"><span class="pre">phamarsim</span></tt></a> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-phamarsim"></span><p>Phamarsim - a phased microhpone array simulation library</p>
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">phamarsim</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-phamarsim.__init__"></span><p>Phamarsim - a phased microhpone array simulation library</p>
+</div>
+<div class="section" id="module-phamarsim.digitizers">
+<span id="digitizers-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">digitizers</span></tt> Module<a class="headerlink" href="#module-phamarsim.digitizers" title="Permalink to this headline">¶</a></h2>
+<p>Speakers for Phamarsim</p>
+<p>Speakers translate the signal of a SoundSource to pressure variations.</p>
 </div>
 <div class="section" id="module-phamarsim.environments">
 <span id="environments-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">environments</span></tt> Module<a class="headerlink" href="#module-phamarsim.environments" title="Permalink to this headline">¶</a></h2>
-<p>Phamarsim - a phased microhpone array simulation library</p>
+<p>Environments for Phamarsim</p>
+<dl class="class">
+<dt id="phamarsim.environments.Environment">
+<em class="property">class </em><tt class="descclassname">phamarsim.environments.</tt><tt class="descname">Environment</tt><big>(</big><em>objects=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#phamarsim.environments.Environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for environments</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>objects</strong> : iterable, optional</p>
+<blockquote class="last">
+<div><p>The objects that should be added to the environment.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="phamarsim.environments.Environment.add_object">
+<tt class="descname">add_object</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#phamarsim.environments.Environment.add_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an object to the environment.</p>
+<p>Raises a ValueError if the object is already a part of the environment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.Environment.add_objects">
+<tt class="descname">add_objects</tt><big>(</big><em>objs</em><big>)</big><a class="headerlink" href="#phamarsim.environments.Environment.add_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add multiple objects at once.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>objs</strong> : list</p>
+<blockquote class="last">
+<div><p>A list of objects to be added to the environment.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.Environment.get_objects">
+<tt class="descname">get_objects</tt><big>(</big><em>typ=&lt;class phamarsim.environments.SimpleObject at 0x30edc18&gt;</em><big>)</big><a class="headerlink" href="#phamarsim.environments.Environment.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all objects in the environment of type typ.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.Environment.remove_object">
+<tt class="descname">remove_object</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#phamarsim.environments.Environment.remove_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an object from the environment.</p>
+<p>Raises a ValueError if the object is not a part of the environment.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="phamarsim.environments.SimpleObject">
+<em class="property">class </em><tt class="descclassname">phamarsim.environments.</tt><tt class="descname">SimpleObject</tt><big>(</big><em>environment=None</em>, <em>x=None</em>, <em>y=None</em>, <em>z=None</em>, <em>theta=None</em>, <em>phi=None</em><big>)</big><a class="reference internal" href="_modules/phamarsim/environments.html#SimpleObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.environments.SimpleObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple point-like objects with a position and orientation in an environment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>environment</strong> : Environment, optional</p>
+<blockquote>
+<div><p>The environment in which the object should be placed.</p>
+</div></blockquote>
+<p><strong>x</strong> : float, optional</p>
+<blockquote>
+<div><p>The x-position of the object [m].</p>
+</div></blockquote>
+<p><strong>y</strong> : float, optional</p>
+<blockquote>
+<div><p>The y-position of the object [m].</p>
+</div></blockquote>
+<p><strong>z</strong> : float, optional</p>
+<blockquote>
+<div><p>The z-position of the object [m].</p>
+</div></blockquote>
+<p><strong>theta</strong> : float, optional</p>
+<blockquote>
+<div><p>The polar angle of the object as measured from the z-axis [deg].</p>
+</div></blockquote>
+<p><strong>phi</strong> : float, optional</p>
+<blockquote class="last">
+<div><p>The azimuthal angle of the object as measured from the x-axis [deg].</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="phamarsim.environments.SimpleObject.add_to_environment">
+<tt class="descname">add_to_environment</tt><big>(</big><em>environment</em><big>)</big><a class="headerlink" href="#phamarsim.environments.SimpleObject.add_to_environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the object to an environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>environment</strong> : Environment</p>
+<blockquote class="last">
+<div><p>The environment the object should be added to.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>An object can only be present in one environment at the time.
+It will be removed from any previous environments.</p>
+<p>If the object is already part of the environment, a ValueError will be raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.SimpleObject.get_environment">
+<tt class="descname">get_environment</tt><big>(</big><big>)</big><a class="headerlink" href="#phamarsim.environments.SimpleObject.get_environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current environment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.SimpleObject.get_postion">
+<tt class="descname">get_postion</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/phamarsim/environments.html#SimpleObject.get_postion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.environments.SimpleObject.get_postion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the position and orientation of the object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>x</strong> : float</p>
+<blockquote>
+<div><p>The x-position of the object [m].</p>
+</div></blockquote>
+<p><strong>y</strong> : float</p>
+<blockquote>
+<div><p>The y-position of the object [m].</p>
+</div></blockquote>
+<p><strong>z</strong> : float</p>
+<blockquote>
+<div><p>The z-position of the object [m].</p>
+</div></blockquote>
+<p><strong>theta</strong> : float</p>
+<blockquote>
+<div><p>The polar angle of the object as measured from the z-axis [deg].</p>
+</div></blockquote>
+<p><strong>phi</strong> : float</p>
+<blockquote class="last">
+<div><p>The azimuthal angle of the object as measured from the x-axis [deg].</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.SimpleObject.remove_from_environment">
+<tt class="descname">remove_from_environment</tt><big>(</big><em>environment</em><big>)</big><a class="headerlink" href="#phamarsim.environments.SimpleObject.remove_from_environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the object from an environment.</p>
+<p>Raises ValueError if the object is not part of the environment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.environments.SimpleObject.set_position">
+<tt class="descname">set_position</tt><big>(</big><em>x=None</em>, <em>y=None</em>, <em>z=None</em>, <em>theta=None</em>, <em>phi=None</em><big>)</big><a class="reference internal" href="_modules/phamarsim/environments.html#SimpleObject.set_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.environments.SimpleObject.set_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set position and orientation of the object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x</strong> : float, optional</p>
+<blockquote>
+<div><p>The new x-position of the object [m].</p>
+</div></blockquote>
+<p><strong>y</strong> : float, optional</p>
+<blockquote>
+<div><p>The new y-position of the object [m].</p>
+</div></blockquote>
+<p><strong>z</strong> : float, optional</p>
+<blockquote>
+<div><p>The new z-position of the object [m].</p>
+</div></blockquote>
+<p><strong>theta</strong> : float, optional</p>
+<blockquote>
+<div><p>The new polar angle of the object as measured from the z-axis [deg].</p>
+</div></blockquote>
+<p><strong>phi</strong> : float, optional</p>
+<blockquote class="last">
+<div><p>The new azimuthal angle of the object as measured from the x-axis [deg].</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-phamarsim.microphones">
 <span id="microphones-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">microphones</span></tt> Module<a class="headerlink" href="#module-phamarsim.microphones" title="Permalink to this headline">¶</a></h2>
@@ -96,11 +298,12 @@
 <span id="sources-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">sources</span></tt> Module<a class="headerlink" href="#module-phamarsim.sources" title="Permalink to this headline">¶</a></h2>
 <p>Sound sources for Phamarsim</p>
 <p>Sound sources must define the method</p>
-<blockquote>
-<div>get_sound_signal(t)</div></blockquote>
-<p>which returns the signal of the source for every point in time t [s].
-The unit of the signal is arbitrary and will be translated into a pressure by a speaker.
-It should be centered at 0 and the amplitude should be around 1.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sound_signal</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which returns the signal of the source for every point in time t [s].</p>
+<p>The unit of the signal is 1 and will be translated to soundwaves by a speaker.
+It should be centered at 0 and the amplitude should be &lt;= 1.</p>
 <dl class="class">
 <dt id="phamarsim.sources.SineSource">
 <em class="property">class </em><tt class="descclassname">phamarsim.sources.</tt><tt class="descname">SineSource</tt><big>(</big><em>freq=440.0</em>, <em>amp=1.0</em>, <em>phi=0.0</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource" title="Permalink to this definition">¶</a></dt>
@@ -112,20 +315,24 @@ It should be centered at 0 and the amplitude should be around 1.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>freq</strong> : float, optional</p>
 <blockquote>
-<div><p>The frequency in Hz</p>
+<div><p>The frequency in Hz.</p>
 </div></blockquote>
 <p><strong>amp</strong> : float, optional</p>
 <blockquote>
-<div><p>The amplitude of the signal</p>
+<div><p>The amplitude of the signal.</p>
 </div></blockquote>
 <p><strong>phi</strong> : float, optional</p>
 <blockquote class="last">
-<div><p>The phase of the signal</p>
+<div><p>The phase of the signal [rad].</p>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>The signal will be</p>
+<blockquote>
+<div>signal = amp * sin(2*pi*freq*t + phi).</div></blockquote>
 <dl class="method">
 <dt id="phamarsim.sources.SineSource.get_amplitude">
 <tt class="descname">get_amplitude</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SineSource.get_amplitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SineSource.get_amplitude" title="Permalink to this definition">¶</a></dt>
@@ -168,9 +375,44 @@ It should be centered at 0 and the amplitude should be around 1.</p>
 <em class="property">class </em><tt class="descclassname">phamarsim.sources.</tt><tt class="descname">SoundSource</tt><a class="reference internal" href="_modules/phamarsim/sources.html#SoundSource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SoundSource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for sound sources</p>
 <dl class="method">
-<dt id="phamarsim.sources.SoundSource.get_signal">
-<tt class="descname">get_signal</tt><big>(</big><em>t</em><big>)</big><a class="reference internal" href="_modules/phamarsim/sources.html#SoundSource.get_signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.sources.SoundSource.get_signal" title="Permalink to this definition">¶</a></dt>
+<dt id="phamarsim.sources.SoundSource.connect_speaker">
+<tt class="descname">connect_speaker</tt><big>(</big><em>speaker</em><big>)</big><a class="headerlink" href="#phamarsim.sources.SoundSource.connect_speaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect a speaker to the sound source.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>speaker</strong> : Speaker</p>
+<blockquote class="last">
+<div><p>Speaker to connect to the sound source.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Multiple speakers can be connected to a single source.</p>
+<p>Raises ValueError if the speaker is already connected to the source.</p>
+<p>If the speaker is already connected to another sound source, it will be disconnected from it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SoundSource.disconnect_speaker">
+<tt class="descname">disconnect_speaker</tt><big>(</big><em>speaker</em><big>)</big><a class="headerlink" href="#phamarsim.sources.SoundSource.disconnect_speaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnect a speaker from the sound source.</p>
+<p>Raises ValueError if the speaker is not connected.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SoundSource.get_sound_signal">
+<tt class="descname">get_sound_signal</tt><big>(</big><em>t</em><big>)</big><a class="headerlink" href="#phamarsim.sources.SoundSource.get_sound_signal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the signal of the source for each moment t.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.sources.SoundSource.get_speakers">
+<tt class="descname">get_speakers</tt><big>(</big><em>typ=&lt;class phamarsim.speakers.Speaker at 0x30ede88&gt;</em><big>)</big><a class="headerlink" href="#phamarsim.sources.SoundSource.get_speakers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all speakers of type typ</p>
 </dd></dl>
 
 </dd></dl>
@@ -179,7 +421,125 @@ It should be centered at 0 and the amplitude should be around 1.</p>
 <div class="section" id="module-phamarsim.speakers">
 <span id="speakers-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">speakers</span></tt> Module<a class="headerlink" href="#module-phamarsim.speakers" title="Permalink to this headline">¶</a></h2>
 <p>Speakers for Phamarsim</p>
-<p>Speakers translate the signal of a SoundSource to pressure variations.</p>
+<p>Speakers translate the signal of a SoundSource to (direction dependent) plane
+sound waves.  They must provide a method</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_wave</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>which produces an ndarray of the wave form in the specified direction. Theta
+and phi are to be interpreted as relative to the speaker, <em>not</em> as absolute
+angles in the environment. The units of t, theta and phi are s, deg and deg
+respectively.</p>
+<p>Since all speakers are assumed to be point like, the waveform will be
+attenuated with 1/r, where r is the distance in metres. This means that the
+unit of the plane wave is mPa * m.</p>
+<p>Another way to look at it is that get_wave() produces the pressure signal [mPa]
+that would be measured 1 m away from the speaker in the direction specified by
+theta and phi, albeit ignoring the time delay.</p>
+<p>According to Wikipedia, a normal conversation has a sound pressure of 2~20 mPa.</p>
+<dl class="class">
+<dt id="phamarsim.speakers.Speaker">
+<em class="property">class </em><tt class="descclassname">phamarsim.speakers.</tt><tt class="descname">Speaker</tt><big>(</big><em>src=None</em>, <em>amplification=1.0</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/phamarsim/speakers.html#Speaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#phamarsim.speakers.Speaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#phamarsim.environments.SimpleObject" title="phamarsim.environments.SimpleObject"><tt class="xref py py-class docutils literal"><span class="pre">phamarsim.environments.SimpleObject</span></tt></a></p>
+<p>Base class for speakers</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>src</strong> : SoundSource, optional</p>
+<blockquote>
+<div><p>A SoundSource the speaker will connected to.</p>
+</div></blockquote>
+<p><strong>amplification</strong> : SoundSource, optional</p>
+<blockquote>
+<div><p>Amplification factor for the translation of sound signals to sound pressure.
+Unit: mPa * m</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dictionary</p>
+<blockquote class="last">
+<div><p>Will be passed to the <cite>SimpleObject</cite> constructor.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="phamarsim.speakers.Speaker.connect_to_source">
+<tt class="descname">connect_to_source</tt><big>(</big><em>src</em><big>)</big><a class="headerlink" href="#phamarsim.speakers.Speaker.connect_to_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect the speaker to a sound source.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>src</strong> : SoundSource</p>
+<blockquote class="last">
+<div><p>The sound source the speaker should be connected with.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Speakers can only be connected to a single source.
+If the speaker is already connected to another sound source, it will be
+disconnected from it.</p>
+<p>Raises ValueError if the speaker is already connected to the source.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.speakers.Speaker.disconnect_from_source">
+<tt class="descname">disconnect_from_source</tt><big>(</big><em>src</em><big>)</big><a class="headerlink" href="#phamarsim.speakers.Speaker.disconnect_from_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnect the speaker from a sound source.</p>
+<p>Raises ValueError if the source is not connected.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.speakers.Speaker.get_amplification">
+<tt class="descname">get_amplification</tt><big>(</big><big>)</big><a class="headerlink" href="#phamarsim.speakers.Speaker.get_amplification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.speakers.Speaker.get_sound_wave">
+<tt class="descname">get_sound_wave</tt><big>(</big><em>t</em>, <em>theta=0.0</em>, <em>phi=0.0</em><big>)</big><a class="headerlink" href="#phamarsim.speakers.Speaker.get_sound_wave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return plane wave signal in the specified direction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>t</strong> : float</p>
+<blockquote>
+<div><p>Times at which the signal signal should be evaluated [s].</p>
+</div></blockquote>
+<p><strong>theta</strong> : float</p>
+<blockquote>
+<div><p>The polar angle of the outgoing wave as measurde from the speaker&#8217;s z-axis [deg].</p>
+</div></blockquote>
+<p><strong>phi</strong> : float</p>
+<blockquote class="last">
+<div><p>The azimuthal angle of outgoing wave as measured from the speaker&#8217;s x-axis [deg].</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This simple speaker emulates an isotropic sound source with the same
+gain in all directions, so the signal is independent of the chosen
+theta and phi.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.speakers.Speaker.get_source">
+<tt class="descname">get_source</tt><big>(</big><big>)</big><a class="headerlink" href="#phamarsim.speakers.Speaker.get_source" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phamarsim.speakers.Speaker.set_amplification">
+<tt class="descname">set_amplification</tt><big>(</big><em>amplification</em><big>)</big><a class="headerlink" href="#phamarsim.speakers.Speaker.set_amplification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -193,6 +553,7 @@ It should be centered at 0 and the amplitude should be around 1.</p>
   <ul>
 <li><a class="reference internal" href="#">phamarsim Package</a><ul>
 <li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">phamarsim</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-phamarsim.digitizers"><tt class="docutils literal"><span class="pre">digitizers</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-phamarsim.environments"><tt class="docutils literal"><span class="pre">environments</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-phamarsim.microphones"><tt class="docutils literal"><span class="pre">microphones</span></tt> Module</a></li>
 <li><a class="reference internal" href="#module-phamarsim.simple_mediums"><tt class="docutils literal"><span class="pre">simple_mediums</span></tt> Module</a></li>

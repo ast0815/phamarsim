@@ -4,7 +4,15 @@ phamarsim Package
 :mod:`phamarsim` Package
 ------------------------
 
-.. automodule:: phamarsim
+.. automodule:: phamarsim.__init__
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`digitizers` Module
+------------------------
+
+.. automodule:: phamarsim.digitizers
     :members:
     :undoc-members:
     :show-inheritance:

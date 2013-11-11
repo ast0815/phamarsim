@@ -1,0 +1,137 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>phamarsim.speakers &mdash; Phamarsim 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Phamarsim 0.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Phamarsim 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for phamarsim.speakers</h1><div class="highlight"><pre>
+<span class="c"># coding:utf-8</span>
+<span class="sd">&quot;&quot;&quot;Speakers for Phamarsim</span>
+
+<span class="sd">Speakers translate the signal of a SoundSource to (direction dependent) plane</span>
+<span class="sd">sound waves.  They must provide a method</span>
+
+<span class="sd">&gt;&gt;&gt; get_wave(t, theta, phi),</span>
+
+<span class="sd">which produces an ndarray of the wave form in the specified direction.</span>
+
+<span class="sd">Since all speakers are assumed to be point like, the waveform will be</span>
+<span class="sd">attenuated with 1/r, where r is the distance in metres. This means that the</span>
+<span class="sd">unit of the plane wave is mPa * m.</span>
+
+<span class="sd">Another way to look at it is that get_wave() produces the pressure signal [mPa]</span>
+<span class="sd">that would be measured 1 m away from the speaker in the direction specified by</span>
+<span class="sd">theta and phi, albeit ignoring the time delay.</span>
+
+<span class="sd">According to Wikipedia, a normal conversation has a sound pressure of 2~20 mPa.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">environments</span> <span class="kn">as</span> <span class="nn">env</span>
+
+<div class="viewcode-block" id="Speaker"><a class="viewcode-back" href="../../phamarsim.html#phamarsim.speakers.Speaker">[docs]</a><span class="k">class</span> <span class="nc">Speaker</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">SimpleObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for speakers</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    src : SoundSource, optional</span>
+<span class="sd">        A SoundSource the speaker will connected to.</span>
+<span class="sd">    **kwargs : </span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+   
+<div class="viewcode-block" id="Speaker.get_wave"><a class="viewcode-back" href="../../phamarsim.html#phamarsim.speakers.Speaker.get_wave">[docs]</a>    <span class="k">def</span> <span class="nf">get_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return plane wave signal in the specified direction.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">t</span> <span class="o">*</span> <span class="mf">0.0</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Phamarsim 0.1.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lukas Koch.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
