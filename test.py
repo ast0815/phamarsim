@@ -11,13 +11,14 @@ S1 = pa.sources.SineSource()
 S2 = pa.sources.SineSource(500, 1.3, 1)
 
 M = pa.simple_mediums.Air(25.0)
-print M.get_speed_of_sound()
 
-fig, ax = plt.subplots(1,1)
-t = np.linspace(0, 1/200, 50)
-p = S1.get_sound_pressure(t)
-ax.plot(t, p)
-p = S2.get_sound_pressure(t)
-ax.plot(t, p)
-fig.show()
-raw_input()
+O1 = pa.environments.SimpleObject()
+O2 = pa.environments.SimpleObject()
+
+E = pa.environments.Environment()
+
+E.add_object(O1)
+O2.add_to_environment(E)
+print E.get_objects()
+E.remove_object(O2)
+print E.get_objects()
