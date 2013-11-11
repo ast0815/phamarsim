@@ -3,7 +3,6 @@
 
 from __future__ import division
 import numpy as np
-import scipy as sc
 
 import logging
 log = logging.getLogger(__name__)
@@ -122,6 +121,7 @@ class SimpleObject():
             # The environment was not able to add the object. Reset and raise Error.
             self._environment = None
             raise
+        log.debug("%s is now part of %s."%(self, environment))
     
     def remove_from_environment(self, environment):
         """Remove the object from an environment.
@@ -136,6 +136,7 @@ class SimpleObject():
         except ValueError:
             # Catch ValueErrors so a mutual removal does not raise an Error.
             pass
+        log.debug("%s is no longer a part of %s."%(self, environment))
 
 class Environment():
     """Base class for environments
@@ -149,6 +150,18 @@ class Environment():
     def __init__(self, objects=[]):
         self._objects = []
         for obj in objects:
+            self.add_object(obj)
+
+    def add_objects(self, objs):
+        """Add multiple objects at once.
+
+        Parameters
+        ----------
+        objs : list
+            A list of objects to be added to the environment.
+
+        """
+        for obj in objs:
             self.add_object(obj)
 
     def add_object(self, obj):
@@ -171,6 +184,7 @@ class Environment():
             # The object could not be added. Reset.
             self._objects.remove(obj)
             raise
+        log.debug("%s now includes %s."%(self, obj))
 
     def remove_object(self, obj):
         """Remove an object from the environment.
@@ -179,15 +193,16 @@ class Environment():
 
         """
         if obj not in self._objects:
-            raise ValueError("Thfinallyf the environment.")
+            raise ValueError("The object is no part of the environment.")
 
         # Remove the object
         self._objects.remove(obj)
         try:
             obj.remove_from_environment(self)
         except ValueError:
-            # For mutual removal
+            # Don't raise an error on mutual removal.
             pass
+        log.debug("%s no longer includes %s."%(self, obj))
 
     def get_objects(self, typ=SimpleObject):
         """Return a list of all objects in the environment of type typ."""

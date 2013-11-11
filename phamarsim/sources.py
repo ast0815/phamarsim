@@ -3,17 +3,21 @@
 
 Sound sources must define the method
 
-    get_signal(t)
+>>> get_sound_signal(t)
 
 which returns the signal of the source for every point in time t [s].
 
-The unit of the signal is arbitrary and will be translated to soundwaves by a speaker.
+The unit of the signal is 1 and will be translated to soundwaves by a speaker.
 It should be centered at 0 and the amplitude should be <= 1.
 
 """
 from __future__ import division
 import numpy as np
-#import scipy as sc
+
+import logging
+log = logging.getLogger(__name__)
+
+import speakers
 
 class SoundSource():
     """Base class for sound sources"""
@@ -21,20 +25,8 @@ class SoundSource():
     def __init__(self):
         self._speakers = []
 
-    def get_signal(self, t): 
-        """Return the signal of the source for each moment t.
-        
-        Parameters
-        ----------
-        t : array_like
-            Points in time for which the signal should be evaluated. The unit is seconds.
-
-        Returns
-        -------
-        signal : ndarray
-            The sound signal evaluated at every point in t.
-        
-        """
+    def get_sound_signal(self, t): 
+        """Return the signal of the source for each moment t."""
         return  t * 0.0
 
     def connect_speaker(self, speaker):
@@ -55,9 +47,9 @@ class SoundSource():
 
         """
         if speaker not in self._speakers:
-            self._speakers.add(speaker)
+            self._speakers.append(speaker)
             try:
-                speaker.connect_source(self)
+                speaker.connect_to_source(self)
             except ValueError:
                 # Catch ValueErrors so a mutual connect does not raise an Error.
                 pass
@@ -67,6 +59,7 @@ class SoundSource():
                 raise
         else:
             raise ValueError("Speaker already connected to source")
+        log.debug("%s is now connected to %s."%(self, speaker))
 
     def disconnect_speaker(self, speaker):
         """Disconnect a speaker from the sound source.
@@ -74,10 +67,15 @@ class SoundSource():
         Raises ValueError if the speaker is not connected."""
         self._speakers.remove(speaker)
         try:
-            speaker.disconnect_source(self)
+            speaker.disconnect_from_source(self)
         except ValueError:
             # Catch ValueErrors so a mutual disconnect does not raise an Error.
             pass
+        log.debug("%s is now disconnected from %s."%(self, speaker))
+
+    def get_speakers(self, typ=speakers.Speaker):
+        """Return all speakers of type typ"""
+        return [S for S in self._speakers if isinstance(S, typ)]
 
 class SineSource(SoundSource):
     """Simple sine wave sound generator
@@ -90,6 +88,12 @@ class SineSource(SoundSource):
         The amplitude of the signal.
     phi : float, optional
         The phase of the signal [rad].
+    
+    Notes
+    -----
+    The signal will be
+    
+        signal = amp * sin(2*pi*freq*t + phi).
 
     """
     def __init__(self, freq=440.0, amp=1.0, phi = 0.0):
@@ -114,5 +118,5 @@ class SineSource(SoundSource):
         return self._amplitude
 
     def get_sound_signal(self, t):
-        return self._amplitude * np.sin(2*np.pi*self._frequency*t + self._phase)
+        return self.get_amplitude() * np.sin(2*np.pi*self.get_frequency()*t + self._phase)
 
