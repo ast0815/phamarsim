@@ -40,7 +40,6 @@ fig, ax = plt.subplots(1,1)
 for S in [S1, S2]:
     ax.plot(t, S.get_sound_signal(t))
 fig.show()
-raw_input("Hit Enter.")
 fig, ax = plt.subplots(1,1)
 for S in E.get_objects(pa.speakers.Speaker):
     ax.plot(t, S.get_sound_wave(t, 0.0, 0.0))

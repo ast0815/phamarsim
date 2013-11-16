@@ -14,6 +14,7 @@ It should be centered at 0 and the amplitude should be <= 1.
 from __future__ import division
 import numpy as np
 
+import warnings
 import logging
 log = logging.getLogger(__name__)
 
@@ -26,7 +27,7 @@ class SoundSource():
         self._speakers = []
 
     def get_sound_signal(self, t): 
-        """Return the signal of the source for each moment t."""
+        warnigns.warn("Tried to get a sound signal from the SoundSource base class.")
         return  t * 0.0
 
     def connect_speaker(self, speaker):

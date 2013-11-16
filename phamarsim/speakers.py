@@ -52,21 +52,25 @@ class Speaker(environments.SimpleObject):
         if src is not None:
             self.connect_to_source(src)
     
-    def get_sound_wave(self, t, theta=0.0, phi=0.0):
-        """Return plane wave signal in the specified direction.
+    def get_pressure_signal(self, t, theta=0.0, phi=0.0):
+        """Return the pressure signal for a plane wave in the specified direction.
         
         Parameters
         ----------
-        t : float
+        t : array-like
             Times at which the signal signal should be evaluated [s].
-        theta : float
+        theta : array-like
             The polar angle of the outgoing wave as measurde from the speaker's z-axis [deg].
-        phi : float
+        phi : array-like
             The azimuthal angle of outgoing wave as measured from the speaker's x-axis [deg].
-        
+
+        Returns
+        -------
+        p : ndarray
+            The pressure signal for the specified direction.
+
         Notes
         -----
-
         This simple speaker emulates an isotropic sound source with the same
         gain in all directions, so the signal is independent of the chosen
         theta and phi.

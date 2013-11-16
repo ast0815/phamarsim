@@ -1,9 +1,31 @@
 # coding:utf-8
-"""Environments for Phamarsim"""
+"""Environments for Phamarsim
 
+Environments must define the function
+
+>>> get_plane_waves(t,x,y,z)
+
+which returns a representation of the local sound field:
+
+>>> [ (array(t), array(theta), array(phi), array(p)), ( ), ... ]
+
+Each tuple `(t, theta, phi, p)` represents a sound wave that is propagating in
+direction theta and phi. Theta and phi do not have to be constant.
+The sum over the `p`-arrays of all waves yields the (only time-dependent) pressure
+signal at position `x, y, z`. This simpler signal is also returned by the function
+
+>>> get_pressure_signal(t,x,y,z)
+
+which will call `get_plane_waves` internally.
+
+"""
 from __future__ import division
 import numpy as np
 
+import mediums
+import speakers
+
+import warnings
 import logging
 log = logging.getLogger(__name__)
 
@@ -82,6 +104,30 @@ class SimpleObject():
 
         """
         return self._x, self._y, self._z, self._theta, self._phi
+    
+    def get_relative_position(self, obj):
+        """Return the position relative to another object.
+        
+        Parameters
+        ----------
+        origin : SimpleObject
+            The object relative to which the position should be returned.
+
+        Returns
+        ----------
+        x : float
+            The x-position of the object relative to `origin` [m].
+        y : float
+            The y-position of the object relative to `origin` [m].
+        z : float
+            The z-position of the object relative to `origin` [m].
+        theta : float
+            The polar angle of the object as measured from the z-axis of `origin` [deg].
+        phi : float
+            The azimuthal angle of the object as measured from the x-axis of `origin` [deg].
+
+        
+        """
 
     def get_environment(self):
         """Return the current environment."""
@@ -149,19 +195,18 @@ class Environment():
     """
     def __init__(self, objects=[]):
         self._objects = []
-        for obj in objects:
-            self.add_object(obj)
+        self.add_objects(objects)
 
-    def add_objects(self, objs):
+    def add_objects(self, objects):
         """Add multiple objects at once.
 
         Parameters
         ----------
-        objs : list
-            A list of objects to be added to the environment.
+        objects : iterable
+            An iterable of objects to be added to the environment.
 
         """
-        for obj in objs:
+        for obj in objects:
             self.add_object(obj)
 
     def add_object(self, obj):
@@ -207,3 +252,46 @@ class Environment():
     def get_objects(self, typ=SimpleObject):
         """Return a list of all objects in the environment of type typ."""
         return [o for o in self._objects if isinstance(o, typ)]
+
+    def get_plane_waves(self, t, x, y, z):
+        warnigns.warn("Tried to get plane waves from the Environment base class.")
+        return []
+
+    def get_pressure_signal(self, t, x, y, z):
+        waves = self.get_plane_waves(t,x,y,z)
+        signal = np.zeros_like(t)
+        for tt, theta, phi, p in waves:
+            signal += p
+        return signal
+
+class SimpleEnvironment(Environment):
+    """Creates a very simple environment with a homogeneous material and point-like objects.
+
+    Parameters:
+    -----------
+    medium : SimpleMedium, optional
+        The medium of the environment. Defaults to `mediums.SimpleAir()`.
+    objects : iterable, optional
+        An iterable of the objects that should be added to the environment.
+
+    """
+    def __init__(self, medium=mediums.SimpleMedium(), **kwargs):
+        Environment.__init__(self, **kwargs)
+        self._medium = None
+        self.set_medium(medium)
+
+    def set_medium(self, medium):
+        self._medium = medium
+        log.debug("The medium of %s is now %s."%(self, medium))
+
+    def get_medium(self, medium):
+        return self._medium
+
+    def get_plane_waves(self, t, x, y, z):
+        """Return the local plane waves pressure signals."""
+
+        waves = []
+        for spk in self.get_objects(speakers.Speaker):
+            
+        return
+
