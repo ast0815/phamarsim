@@ -4,7 +4,7 @@
 Speakers translate the signal of a SoundSource to (direction dependent) plane
 sound waves.  They must provide a method
 
->>> get_wave(t, theta, phi),
+>>> get_pressure_signal(t, theta, phi),
 
 which produces an ndarray of the wave form in the specified direction. Theta
 and phi are to be interpreted as relative to the speaker, *not* as absolute
@@ -29,9 +29,9 @@ import numpy as np
 import logging
 log = logging.getLogger(__name__)
 
-import environments as environments
+import objects
 
-class Speaker(environments.SimpleObject):
+class Speaker(objects.SimpleObject):
     """Base class for speakers
     
     Parameters
@@ -46,7 +46,7 @@ class Speaker(environments.SimpleObject):
     
     """
     def __init__(self, src=None, amplification=1.0, **kwargs):
-        environments.SimpleObject.__init__(self, **kwargs)
+        objects.SimpleObject.__init__(self, **kwargs)
         self._source = None
         self._amplification = amplification
         if src is not None:
