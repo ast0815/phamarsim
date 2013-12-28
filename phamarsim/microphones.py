@@ -1,6 +1,3 @@
-# coding:utf-8
-"""Phamarsim - a phased microhpone array simulation library"""
-
 from __future__ import division
 # coding:utf-8
 """Microphones for Phamarsim
@@ -22,52 +19,49 @@ log = logging.getLogger(__name__)
 
 import objects
 
-class Speaker(objects.SimpleObject):
-    """Base class for speakers
+class Microphone(objects.SimpleObject):
+    """Base class for microphones
     
     Parameters
     ----------
-    src : SoundSource, optional
-        A SoundSource the speaker will connected to.
-    amplification : SoundSource, optional
-        Amplification factor for the translation of sound signals to sound pressure.
-        Unit: mPa * m
+    digitzer : SoundSource, optional
+        A Digitizer the microphone will connected to.
+    amplification : float, optional
+        Amplification factor for the translation of sound pressure.
+        This is only a general amplification factor and can be modulated by
+        the microphones spatial or temporal characterisitcs.
+        Unit: V/mPa
     kwargs : dictionary
         Will be passed to the `SimpleObject` constructor.
     
     """
-    def __init__(self, src=None, amplification=1.0, **kwargs):
+    def __init__(self, digitizer=None, amplification=1.0, **kwargs):
         objects.SimpleObject.__init__(self, **kwargs)
-        self._source = None
+        self._digitizer = None
         self._amplification = amplification
-        if src is not None:
-            self.connect_to_source(src)
+        if digitizer is not None:
+            self.connect_to_digitizer(digitizer)
     
-    def get_pressure_signal(self, t, theta=0.0, phi=0.0):
-        """Return the pressure signal for a plane wave in the specified direction.
+    def get_voltage_signal(self, t):
+        """Return the voltage signal at the specified times.
         
         Parameters
         ----------
         t : array-like
             Times at which the signal signal should be evaluated [s].
-        theta : array-like
-            The polar angle of the outgoing wave as measurde from the speaker's z-axis [deg].
-        phi : array-like
-            The azimuthal angle of outgoing wave as measured from the speaker's x-axis [deg].
 
         Returns
         -------
-        p : ndarray
-            The pressure signal for the specified direction.
+        U : ndarray
+            The voltage signal [V].
 
         Notes
         -----
-        This simple speaker emulates an isotropic sound source with the same
-        gain in all directions, so the signal is independent of the chosen
-        theta and phi.
+        This simple microphone is isotropic with the same gain in all directions.
         
         """
-        return self.get_source().get_sound_signal(t) * self.get_amplification()
+        x,y,z = self.get_position()
+        return self.get_environment().get_pressure_signal(t, x,y,z) * self.get_amplification()
     
     def set_amplification(self, amplification):
         self._amplification = amplification
@@ -75,59 +69,59 @@ class Speaker(objects.SimpleObject):
     def get_amplification(self):
         return self._amplification
 
-    def connect_to_source(self, src):
-        """Connect the speaker to a sound source.
+    def connect_to_digitizer(self, digitizer):
+        """Connect the microphone to a digitizer.
 
         Parameters
         ----------
-        src : SoundSource
-            The sound source the speaker should be connected with.
+        digitizer : Digitizer
+            The digitzer the microphone should be connected with.
         
         Notes
         -----
-        Speakers can only be connected to a single source.
-        If the speaker is already connected to another sound source, it will be
-        disconnected from it.
+        Microphones can only be connected to a single digitizer.
+        If the microphone is already connected to another digitizer,
+        it will be disconnected from it.
 
-        Raises ValueError if the speaker is already connected to the source.
+        Raises ValueError if the microphone is already connected to the digitizer.
 
         """
-        if src == self._source:
-            raise ValueError("The speaker is alread connected to the source.")
+        if digitizer == self._digitizer:
+            raise ValueError("The microphone is alread connected to the digitizer.")
 
         # Disconnect from possible old source.
-        if self._source is not None:
-            self.disconnect_from_source(self._source)
+        if self._digitizer is not None:
+            self.disconnect_from_digitizer(self._digitizer)
 
         # Connect new source
-        self._source = src
+        self._digitizer = digitizer
         try:
-            src.connect_speaker(self)
+            digitizer.connect_microphone(self)
         except ValueError:
             # Catch ValueErrors so a mutual connect does not raise an Error.
             pass
         except:
             # The speaker was not able to connect. Reset and raise Error.
-            self._source = None
+            self._digitizer = None
             raise
-        log.debug("%s is now connected to %s."%(self, src))
+        log.debug("%s is now connected to %s."%(self, digitizer))
 
-    def disconnect_from_source(self, src):
-        """Disconnect the speaker from a sound source.
+    def disconnect_from_digitizer(self, digitizer):
+        """Disconnect the microphone from a digitzer.
         
-        Raises ValueError if the source is not connected.
+        Raises ValueError if the digitizer is not connected.
         
         """
-        if self._source != src:
+        if self._digitizer != digitizer:
             raise ValueError("The source is not connected to the speaker.")
 
-        self._source = None
+        self._digitizer = None
         try:
-            src.disconnect_speaker(self)
+            digitizer.disconnect_microphone(self)
         except ValueError:
             # Catch ValueErrors so a mutual disconnect does not raise an Error.
             pass
-        log.debug("%s is now disconnected from %s."%(self, src))
+        log.debug("%s is now disconnected from %s."%(self, digitizer))
 
-    def get_source(self):
-        return self._source
+    def get_digitizer(self):
+        return self._digitizer

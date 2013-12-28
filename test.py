@@ -33,18 +33,22 @@ Sp1.set_position(-1,0,0)
 Sp2.set_position(0,0,0)
 Sp3.set_position(1,0,0)
 
+M1 = pa.microphones.Microphone()
+E.add_object(M1)
+
 integration_time = 1
 sample_frequency = 10000
 t = np.linspace(0, integration_time, int(integration_time*sample_frequency))
-X = np.linspace(-10, 10, 50)
-Y = np.logspace(-1, 1, 50)
+X = np.linspace(-10, 10, 40)
+Y = np.logspace(-1, 1, 40)
 XX = np.tile(X, len(Y))
 YY = np.repeat(Y, len(X))
 PP = []
 
 for x, y in zip(XX, YY):
     print x, y
-    p = E.get_pressure_signal(t,x,y,0)
+    M1.set_position(x,y,0)
+    p = M1.get_voltage_signal(t)
     # Calculate the RMS pressure signal
     PP.append(np.std(p))
 
