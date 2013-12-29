@@ -10,52 +10,86 @@ import logging
 
 import phamarsim as pa
 
-S1 = pa.sources.SineSource(440)
-S2 = pa.sources.SineSource(500)
-
-Sp1 = pa.speakers.Speaker()
-Sp2 = pa.speakers.Speaker()
-Sp3 = pa.speakers.Speaker()
-
-Sp1.connect_to_source(S1)
-S2.connect_speaker(Sp2)
-Sp3.connect_to_source(S1)
-
 M = pa.mediums.SimpleAir(25.0)
+E = pa.environments.SimpleEnvironment(M)
 
-E = pa.environments.SimpleEnvironment()
-E.set_medium(M)
+S = pa.sources.SineSource(4400)
+Sp = pa.speakers.Speaker(S)
+E.add_object(Sp)
 
-E.add_objects(S1.get_speakers())
-E.add_objects(S2.get_speakers())
+mics = []
+for x in np.linspace(-.1, .1, 15):
+    mic = pa.microphones.Microphone()
+    mic.set_position(x, 0, 0)
+    mics.append(mic)
 
-Sp1.set_position(-1,0,0)
-Sp2.set_position(0,0,0)
-Sp3.set_position(1,0,0)
+E.add_objects(mics)
 
-M1 = pa.microphones.Microphone()
-E.add_object(M1)
-
-integration_time = 1
-sample_frequency = 10000
+integration_time = 0.1
+sample_frequency = 50000
 t = np.linspace(0, integration_time, int(integration_time*sample_frequency))
-X = np.linspace(-10, 10, 40)
-Y = np.logspace(-1, 1, 40)
+X = np.linspace(-1, 1, 30)
+Y = np.logspace(-1.3, 0.2, 30)
 XX = np.tile(X, len(Y))
 YY = np.repeat(Y, len(X))
-PP = []
 
-for x, y in zip(XX, YY):
-    print x, y
-    M1.set_position(x,y,0)
-    p = M1.get_voltage_signal(t)
-    # Calculate the RMS pressure signal
-    PP.append(np.std(p))
+(x0, y0, z0) = (0.5, 1.2, 0.0)
+r0 = np.sqrt(x0**2 + y0**2 + z0**2)
+dts = []
+c = M.get_speed_of_sound()
+for mic in mics:
+    x,y,z = mic.get_position()
+    Dx = x0-x
+    Dy = y0-y
+    Dz = z0-z
+    r = np.sqrt(Dx**2 + Dy**2 + Dz**2)
+    dr = r - r0
+    dts.append(dr / c)
+
+print dts
+
+PP = []
+PN = []
+XX = [x0] + list(XX)
+YY = [y0] + list(YY)
+XY = zip(XX, YY)
+ref = None
+refn = None
+for x, y in XY:
+    Sp.set_position(x,y,0)
+    # Calculate the signal
+    p = np.zeros_like(t)
+    for mic, dt in zip(mics, dts):
+        p += mic.get_voltage_signal(t+dt)
+    p /= len(mics)
+    p = np.std(p)
+    pn = p * np.sqrt(x**2 + y**2)
+    if ref is None:
+        print 'ref', x, y, p, pn
+        ref = p
+        refn = pn
+    p /= ref
+    pn /= refn
+    PP.append(p)
+    PN.append(pn)
 
 fig, ax = plt.subplots()
-cont = ax.tricontourf(XX,YY,np.log(PP))
+ax.set_title("Direkt")
+cont = ax.tricontourf(XX, YY, np.log10(PP))
+ax.plot(x0,y0,'*')
 ax.set_aspect('equal')
-ax.grid()
+ax.plot(XX,YY,',k')
+#ax.grid()
+fig.colorbar(cont)
+fig.show()
+
+fig, ax = plt.subplots()
+ax.set_title("Abstandskorrigiert")
+cont = ax.tricontourf(XX, YY, np.log10(PN))
+ax.plot(x0,y0,'*')
+ax.set_aspect('equal')
+ax.plot(XX,YY,',k')
+#ax.grid()
 fig.colorbar(cont)
 fig.show()
 raw_input()
